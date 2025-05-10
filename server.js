@@ -24,6 +24,17 @@ async function connectToDB() {
 
 app.use(express.json());
 
+app.get("/users/:id", async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+        const user = await db.collection(collectionName).findOne({ _id: new ObjectId(userId) });
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: "Error fetching user" });
+    }
+});
+
 async function startServer() {
     await connectToDB();
     app.listen(3000, () => {
