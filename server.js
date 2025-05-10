@@ -1,16 +1,12 @@
 import express from "express";
 import { MongoClient, ObjectId } from "mongodb";
 
-const app = express();
-
 const mongoURI = "mongodb://localhost:27017";
-
+const client = new MongoClient(mongoURI);
 const dbName = "usersDB";
 const collectionName = "users";
 
 let db;
-
-const client = new MongoClient(mongoURI);
 
 async function connectToDB() {
     try {
@@ -21,6 +17,8 @@ async function connectToDB() {
         console.error("Error connecting to MongoDB:", error);
     }
 }
+
+const app = express();
 
 app.use(express.json());
 
