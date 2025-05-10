@@ -1,1 +1,3 @@
 # mongo-express-node-sample-project
+
+This is a simple and straight to the point example implementation of the backend portion of the MERN stack. It's using the standard MongoDB driver to keep things simple, if we wanted to define a model then something like mongoose could be used to provide a bit more structure. The filtering and error handling is also kept minimal, if more functionality is required then more middleware could be utilized to consolidate the logic.
