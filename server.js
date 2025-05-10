@@ -27,6 +27,10 @@ app.use(express.json());
 app.get("/users/:id", async (req, res) => {
     const userId = req.params.id;
 
+    if (!ObjectId.isValid(userId)) {
+        return res.status(400).json({ error: "Invalid user ID" });
+    }
+
     try {
         const user = await db.collection(collectionName).findOne({ _id: new ObjectId(userId) });
         res.json(user);
