@@ -32,7 +32,10 @@ app.get("/users/:id", async (req, res) => {
     }
 
     try {
-        const user = await db.collection(collectionName).findOne({ _id: new ObjectId(userId) });
+        const user = await db.collection(collectionName).findOne({ 
+            _id: new ObjectId(userId),
+            age: { $gt: 21 }
+        });
 
         if (!user) {
             return res.status(404).json({ error: "User not found" });
